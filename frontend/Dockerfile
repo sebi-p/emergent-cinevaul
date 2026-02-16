@@ -2,11 +2,11 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy package files and yarn.lock
-COPY package.json yarn.lock ./
+# Copy package.json only (yarn.lock will be generated)
+COPY package.json ./
 
 # Install dependencies
-RUN yarn install --frozen-lockfile --network-timeout 100000
+RUN yarn install --network-timeout 100000
 
 # Copy all source files
 COPY . .
