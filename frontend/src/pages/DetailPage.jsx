@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { 
   Star, Calendar, Clock, Play, ExternalLink, Users, 
   Film, Tv, Loader2, ChevronLeft 
@@ -12,7 +12,10 @@ import { Badge } from '../components/ui/badge';
 import { formatDate, formatRuntime, formatVoteAverage } from '../lib/utils';
 
 export const DetailPage = () => {
-  const { type, id } = useParams();
+  const { id } = useParams();
+  const location = useLocation();
+  // Extract type from pathname: /movie/123 or /tv/123
+  const type = location.pathname.split('/')[1];
   const [details, setDetails] = useState(null);
   const [omdbRatings, setOmdbRatings] = useState(null);
   const [loading, setLoading] = useState(true);
