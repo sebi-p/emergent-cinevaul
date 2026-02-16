@@ -1,34 +1,128 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* CineVault App Styles */
+
+/* Poster placeholder */
+.poster-placeholder {
+  @apply bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+/* Rating badges */
+.rating-badge {
+  @apply inline-flex items-center gap-1 px-2 py-1 rounded-md text-sm font-medium;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.rating-imdb {
+  @apply bg-yellow-500/20 text-yellow-400;
 }
 
-.App-link {
-    color: #61dafb;
+.rating-rt {
+  @apply bg-red-500/20 text-red-400;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.rating-tmdb {
+  @apply bg-emerald-500/20 text-emerald-400;
+}
+
+/* Hero backdrop */
+.hero-backdrop {
+  position: relative;
+  min-height: 70vh;
+  background-size: cover;
+  background-position: center top;
+}
+
+.hero-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, #030712 0%, rgba(3, 7, 18, 0.8) 50%, rgba(3, 7, 18, 0.4) 100%);
+}
+
+/* Provider logo */
+.provider-logo {
+  @apply w-10 h-10 rounded-lg bg-white/10 p-1 object-contain;
+}
+
+/* Skeleton loading */
+.skeleton {
+  @apply bg-slate-800 animate-pulse rounded-xl;
+}
+
+/* Filter panel */
+.filter-panel {
+  @apply glass rounded-xl p-6 space-y-6;
+}
+
+/* User avatar */
+.user-avatar {
+  @apply w-32 h-32 rounded-2xl flex items-center justify-center text-5xl font-bold transition-transform duration-300;
+}
+
+.user-avatar:hover {
+  transform: scale(1.05);
+}
+
+/* Watchlist card */
+.watchlist-card {
+  @apply glass rounded-xl p-4 transition-all duration-300 cursor-pointer;
+}
+
+.watchlist-card:hover {
+  @apply border-primary/50;
+  transform: translateY(-2px);
+}
+
+/* Navbar glass effect */
+.navbar-glass {
+  background: rgba(3, 7, 18, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Media row scroll buttons */
+.scroll-btn {
+  @apply absolute top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/60 backdrop-blur flex items-center justify-center text-white opacity-0 transition-opacity duration-300;
+}
+
+.media-row:hover .scroll-btn {
+  @apply opacity-100;
+}
+
+.scroll-btn:hover {
+  @apply bg-primary/80;
+}
+
+/* Tab styles */
+.tab-trigger {
+  @apply px-4 py-2 text-sm font-medium text-slate-400 transition-colors duration-200;
+}
+
+.tab-trigger[data-state="active"] {
+  @apply text-white border-b-2 border-primary;
+}
+
+/* Dropdown animation */
+.dropdown-content {
+  animation: dropdown-in 0.2s ease-out;
+}
+
+@keyframes dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modal overlay */
+.modal-overlay {
+  @apply fixed inset-0 bg-black/80 backdrop-blur-sm z-50;
+}
+
+/* Toast customization */
+[data-sonner-toaster] {
+  font-family: 'Inter', sans-serif !important;
 }
