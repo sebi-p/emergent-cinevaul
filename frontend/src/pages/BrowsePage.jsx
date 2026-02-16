@@ -158,7 +158,7 @@ export const BrowsePage = () => {
             <SelectValue placeholder="All Genres" />
           </SelectTrigger>
           <SelectContent className="bg-card border-white/10 max-h-60">
-            <SelectItem value="">All Genres</SelectItem>
+            <SelectItem value="all">All Genres</SelectItem>
             {genres.map(genre => (
               <SelectItem key={genre.id} value={genre.id.toString()}>{genre.name}</SelectItem>
             ))}
