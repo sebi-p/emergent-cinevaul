@@ -252,6 +252,25 @@ export const BrowsePage = () => {
         </Select>
       </div>
 
+      {/* Language */}
+      <div>
+        <label className="text-sm font-medium text-slate-300 mb-2 block flex items-center gap-2">
+          <Languages className="w-4 h-4 text-primary" />
+          Language
+        </label>
+        <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
+          <SelectTrigger className="bg-secondary/50 border-white/10" data-testid="language-select">
+            <SelectValue placeholder="All Languages" />
+          </SelectTrigger>
+          <SelectContent className="bg-card border-white/10 max-h-60">
+            <SelectItem value="all">All Languages</SelectItem>
+            {LANGUAGE_OPTIONS.map(lang => (
+              <SelectItem key={lang.value} value={lang.value}>{lang.label}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
       {/* Year */}
       <div>
         <label className="text-sm font-medium text-slate-300 mb-2 block">Release Year</label>
