@@ -174,7 +174,7 @@ export const BrowsePage = () => {
             <SelectValue placeholder="Any Year" />
           </SelectTrigger>
           <SelectContent className="bg-card border-white/10 max-h-60">
-            <SelectItem value="">Any Year</SelectItem>
+            <SelectItem value="all">Any Year</SelectItem>
             {YEAR_OPTIONS.map(year => (
               <SelectItem key={year.value} value={year.value}>{year.label}</SelectItem>
             ))}
