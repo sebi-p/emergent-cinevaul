@@ -210,6 +210,31 @@ export const DetailPage = () => {
                   </div>
                 )}
 
+                {/* Streaming Availability - Quick View */}
+                {streaming?.flatrate?.length > 0 && (
+                  <div className="mb-6">
+                    <p className="text-sm text-slate-400 mb-2">Available on:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {streaming.flatrate.slice(0, 5).map(provider => (
+                        <div 
+                          key={provider.provider_id}
+                          className="flex items-center gap-2 bg-emerald-500/20 border border-emerald-500/30 rounded-lg px-3 py-1.5"
+                          title={provider.provider_name}
+                        >
+                          {provider.logo_path && (
+                            <img 
+                              src={`https://image.tmdb.org/t/p/w92${provider.logo_path}`}
+                              alt={provider.provider_name}
+                              className="w-5 h-5 rounded"
+                            />
+                          )}
+                          <span className="text-sm text-emerald-400">{provider.provider_name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {/* Actions */}
                 <div className="flex flex-wrap gap-3">
                   {trailer_url && (
