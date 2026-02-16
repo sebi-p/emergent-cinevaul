@@ -2,24 +2,36 @@
 
 /* Poster placeholder */
 .poster-placeholder {
-  @apply bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center;
+  background: linear-gradient(to bottom right, #1e293b, #0f172a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Rating badges */
 .rating-badge {
-  @apply inline-flex items-center gap-1 px-2 py-1 rounded-md text-sm font-medium;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
 .rating-imdb {
-  @apply bg-yellow-500/20 text-yellow-400;
+  background: rgba(234, 179, 8, 0.2);
+  color: rgb(250, 204, 21);
 }
 
 .rating-rt {
-  @apply bg-red-500/20 text-red-400;
+  background: rgba(239, 68, 68, 0.2);
+  color: rgb(248, 113, 113);
 }
 
 .rating-tmdb {
-  @apply bg-emerald-500/20 text-emerald-400;
+  background: rgba(16, 185, 129, 0.2);
+  color: rgb(52, 211, 153);
 }
 
 /* Hero backdrop */
@@ -39,22 +51,51 @@
 
 /* Provider logo */
 .provider-logo {
-  @apply w-10 h-10 rounded-lg bg-white/10 p-1 object-contain;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem;
+  object-fit: contain;
 }
 
 /* Skeleton loading */
 .skeleton {
-  @apply bg-slate-800 animate-pulse rounded-xl;
+  background: #1e293b;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border-radius: 0.75rem;
 }
 
-/* Filter panel */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Filter panel - use direct styles instead of @apply */
 .filter-panel {
-  @apply glass rounded-xl p-6 space-y-6;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
 }
 
 /* User avatar */
 .user-avatar {
-  @apply w-32 h-32 rounded-2xl flex items-center justify-center text-5xl font-bold transition-transform duration-300;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 700;
+  transition: transform 0.3s ease;
 }
 
 .user-avatar:hover {
@@ -63,11 +104,18 @@
 
 /* Watchlist card */
 .watchlist-card {
-  @apply glass rounded-xl p-4 transition-all duration-300 cursor-pointer;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .watchlist-card:hover {
-  @apply border-primary/50;
+  border-color: rgba(99, 102, 241, 0.5);
   transform: translateY(-2px);
 }
 
@@ -81,24 +129,43 @@
 
 /* Media row scroll buttons */
 .scroll-btn {
-  @apply absolute top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-black/60 backdrop-blur flex items-center justify-center text-white opacity-0 transition-opacity duration-300;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .media-row:hover .scroll-btn {
-  @apply opacity-100;
+  opacity: 1;
 }
 
 .scroll-btn:hover {
-  @apply bg-primary/80;
+  background: rgba(99, 102, 241, 0.8);
 }
 
 /* Tab styles */
 .tab-trigger {
-  @apply px-4 py-2 text-sm font-medium text-slate-400 transition-colors duration-200;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #94a3b8;
+  transition: color 0.2s ease;
 }
 
 .tab-trigger[data-state="active"] {
-  @apply text-white border-b-2 border-primary;
+  color: white;
+  border-bottom: 2px solid #6366f1;
 }
 
 /* Dropdown animation */
@@ -119,10 +186,19 @@
 
 /* Modal overlay */
 .modal-overlay {
-  @apply fixed inset-0 bg-black/80 backdrop-blur-sm z-50;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 50;
 }
 
 /* Toast customization */
 [data-sonner-toaster] {
   font-family: 'Inter', sans-serif !important;
+}
+
+/* Font classes */
+.font-outfit {
+  font-family: 'Outfit', sans-serif;
 }
