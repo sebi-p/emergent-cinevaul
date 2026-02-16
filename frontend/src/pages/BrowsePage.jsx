@@ -131,7 +131,7 @@ export const BrowsePage = () => {
     setSearchParams({ type: mediaType });
   };
 
-  const hasActiveFilters = sortBy !== 'popularity.desc' || selectedGenre || selectedYear || ratingRange[0] > 0 || ratingRange[1] < 10;
+  const hasActiveFilters = sortBy !== 'popularity.desc' || selectedGenre !== 'all' || selectedYear !== 'all' || ratingRange[0] > 0 || ratingRange[1] < 10;
 
   const FilterPanel = () => (
     <div className="space-y-6">
