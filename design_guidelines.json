@@ -1,0 +1,148 @@
+{
+  "design_system": {
+    "identity": {
+      "name": "CineVault",
+      "persona": "The Cinematic Curator",
+      "vibe": "Immersive, Dark, Premium, Organized",
+      "principles": [
+        "Content is King: UI recedes, artwork shines.",
+        "Cinematic Depth: Use layers, shadows, and glass to create depth.",
+        "Fluid Motion: Interactions should feel like a camera pan, smooth and deliberate.",
+        "Data as Art: Ratings and stats should look like HUD elements."
+      ]
+    },
+    "typography": {
+      "font_family": {
+        "heading": "Outfit, sans-serif",
+        "body": "Inter, sans-serif",
+        "mono": "JetBrains Mono, monospace"
+      },
+      "scale": {
+        "h1": "text-6xl md:text-7xl font-bold tracking-tight leading-none",
+        "h2": "text-4xl md:text-5xl font-semibold tracking-tight",
+        "h3": "text-2xl md:text-3xl font-medium",
+        "body_lg": "text-lg leading-relaxed",
+        "body_base": "text-base leading-relaxed text-slate-400",
+        "caption": "text-sm font-medium tracking-wider uppercase text-slate-500"
+      },
+      "imports": [
+        "@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');"
+      ]
+    },
+    "colors": {
+      "theme": "dark",
+      "palette": {
+        "background": "#030712",
+        "foreground": "#f8fafc",
+        "card": {
+          "base": "#0f172a",
+          "border": "rgba(255, 255, 255, 0.08)",
+          "hover": "#1e293b"
+        },
+        "primary": {
+          "default": "#6366f1",
+          "hover": "#4f46e5",
+          "foreground": "#ffffff"
+        },
+        "secondary": {
+          "default": "#1e293b",
+          "foreground": "#f8fafc"
+        },
+        "accent": {
+          "default": "#f43f5e",
+          "glow": "rgba(244, 63, 94, 0.5)"
+        },
+        "status": {
+          "success": "#10b981",
+          "warning": "#f59e0b",
+          "error": "#ef4444",
+          "info": "#3b82f6"
+        }
+      },
+      "gradients": {
+        "hero_overlay": "linear-gradient(to top, #030712 0%, transparent 100%)",
+        "glass": "linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)",
+        "brand_glow": "radial-gradient(circle at center, rgba(99, 102, 241, 0.15) 0%, transparent 70%)"
+      }
+    },
+    "spacing": {
+      "container_padding": "p-6 md:p-12 lg:p-16",
+      "section_gap": "gap-12 md:gap-24",
+      "grid_gap": "gap-6 md:gap-8",
+      "border_radius": {
+        "card": "rounded-xl",
+        "button": "rounded-full",
+        "input": "rounded-lg"
+      }
+    },
+    "layout": {
+      "grid_system": "Bento Grid (Mode A: Tetris)",
+      "container_width": "max-w-7xl mx-auto",
+      "z_index": {
+        "navbar": 50,
+        "modal": 100,
+        "toast": 110,
+        "background": -1
+      }
+    },
+    "components": {
+      "buttons": {
+        "primary": "bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_20px_rgba(99,102,241,0.3)] transition-all duration-300",
+        "secondary": "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-white/5",
+        "ghost": "hover:bg-white/5 text-slate-300 hover:text-white"
+      },
+      "cards": {
+        "movie_poster": "relative aspect-[2/3] overflow-hidden rounded-xl border border-white/10 bg-card transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-primary/20 group",
+        "glass_panel": "bg-black/40 backdrop-blur-xl border border-white/10 shadow-xl"
+      },
+      "inputs": {
+        "search": "bg-secondary/50 border-white/10 focus:border-primary/50 focus:ring-primary/20 text-white placeholder:text-slate-500 h-12 rounded-full px-6"
+      }
+    },
+    "assets": {
+      "icons": "lucide-react",
+      "images": {
+        "hero_bg": "https://images.unsplash.com/photo-1640794082887-8346fb991e66?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHw0fHxjaW5lbWF0aWMlMjBtb3ZpZSUyMHBvc3RlciUyMGFjdGlvbiUyMHNjaS1maXxlbnwwfHx8fDE3NzEyNDAyNTF8MA&ixlib=rb-4.1.0&q=85",
+        "auth_bg": "https://images.unsplash.com/photo-1762541693135-fb989de961e1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDB8MHwxfHNlYXJjaHw0fHxtb3ZpZSUyMHRoZWF0ZXIlMjBhdWRpZW5jZSUyMGRhcmt8ZW58MHx8fHwxNzcxMjQwMjU1fDA&ixlib=rb-4.1.0&q=85",
+        "placeholder_poster": "https://images.unsplash.com/photo-1599828020722-a4fa110ec599?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwxfHxjaW5lbWF0aWMlMjBtb3ZpZSUyMHBvc3RlciUyMGFjdGlvbiUyMHNjaS1maXxlbnwwfHx8fDE3NzEyNDAyNTF8MA&ixlib=rb-4.1.0&q=85"
+      }
+    },
+    "motion": {
+      "transitions": "transition-all duration-300 ease-out",
+      "hover_effects": "hover:-translate-y-1 hover:shadow-lg",
+      "page_transition": "animate-in fade-in slide-in-from-bottom-4 duration-500"
+    }
+  },
+  "instructions_to_main_agent": {
+    "general": [
+      "Implement a strict Dark Mode. Do not use white backgrounds anywhere.",
+      "Use 'Outfit' font for all headings and 'Inter' for body text.",
+      "Use the 'Bento Grid' layout for the Home/Discovery page.",
+      "Ensure all interactive elements have `data-testid` attributes.",
+      "Use `sonner` for toast notifications.",
+      "Do not use generic gradients. Use the specified 'brand_glow' or 'glass' styles.",
+      "For the 'User Switcher', create a visually distinct profile selection screen (like Netflix).",
+      "Watchlists should support drag-and-drop reordering if possible, or at least clear visual sorting."
+    ],
+    "pages": {
+      "home": "Hero section with full-screen background image (hero_bg), followed by horizontal scrolling rails for 'Trending' and 'Popular'.",
+      "search": "Advanced filter sidebar (left) with glassmorphism. Grid results on the right.",
+      "detail": "Immersive header with backdrop image. 'Add to Watchlist' button must be prominent (Primary Color).",
+      "watchlists": "Kanban-style or List view options. Status tags (Watching, Plan to Watch) must be color-coded."
+    }
+  },
+  "universal_guidelines": [
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy",
+    "Use glass-morphism effects with backdrop filters (12-24px blur)",
+    "You MUST NOT apply universal transition. Eg: `transition: all`. This results in breaking transforms. Always add transitions for specific interactive elements like button, input excluding transforms",
+    "You MUST NOT center align the app container, ie do not add `.App { text-align: center; }` in the css file. This disrupts the human natural reading flow of text",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style",
+    "NEVER: use AI assistant Emoji characters like 🤖🧠 etc for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Subtle grain textures, noise overlays, custom cursors, selection states, and loading animations: separates good from extraordinary.",
+    "Main agent relies on these image URLs. Missing categories (especially sponsor logos) = main agent will use placeholder text which is FORBIDDEN"
+  ]
+}
