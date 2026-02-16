@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Search, Filter, X, Loader2, SlidersHorizontal } from 'lucide-react';
-import { searchMulti, discover, getGenres } from '../lib/api';
+import { Search, Filter, X, Loader2, SlidersHorizontal, Tv2 } from 'lucide-react';
+import { searchMulti, discover, getGenres, getWatchProviders } from '../lib/api';
 import { MediaCard, MediaCardSkeleton } from '../components/MediaCard';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
@@ -27,6 +27,9 @@ const YEAR_OPTIONS = Array.from({ length: 30 }, (_, i) => {
   return { value: year.toString(), label: year.toString() };
 });
 
+// Popular streaming providers to show at top
+const POPULAR_PROVIDER_IDS = [8, 337, 9, 350, 15, 386, 387, 531, 1899, 283]; // Netflix, Disney+, Prime, Apple TV, Hulu, Peacock, Max, Paramount+, etc.
+
 export const BrowsePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [results, setResults] = useState([]);
@@ -34,6 +37,7 @@ export const BrowsePage = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [genres, setGenres] = useState([]);
+  const [providers, setProviders] = useState([]);
   const [showFilters, setShowFilters] = useState(false);
 
   // Filter states
@@ -43,19 +47,37 @@ export const BrowsePage = () => {
   const [sortBy, setSortBy] = useState('popularity.desc');
   const [selectedGenre, setSelectedGenre] = useState('all');
   const [selectedYear, setSelectedYear] = useState('all');
+  const [selectedProvider, setSelectedProvider] = useState('all');
   const [ratingRange, setRatingRange] = useState([0, 10]);
 
-  // Fetch genres
+  // Fetch genres and providers
   useEffect(() => {
-    const fetchGenres = async () => {
+    const fetchFiltersData = async () => {
       try {
-        const data = await getGenres(mediaType);
-        setGenres(data.genres || []);
+        const [genresData, providersData] = await Promise.all([
+          getGenres(mediaType),
+          getWatchProviders()
+        ]);
+        setGenres(genresData.genres || []);
+        
+        // Sort providers: popular ones first, then alphabetically
+        const allProviders = providersData.providers || [];
+        const popularProviders = allProviders.filter(p => POPULAR_PROVIDER_IDS.includes(p.provider_id));
+        const otherProviders = allProviders
+          .filter(p => !POPULAR_PROVIDER_IDS.includes(p.provider_id))
+          .sort((a, b) => a.provider_name.localeCompare(b.provider_name));
+        
+        // Sort popular providers by their order in POPULAR_PROVIDER_IDS
+        popularProviders.sort((a, b) => 
+          POPULAR_PROVIDER_IDS.indexOf(a.provider_id) - POPULAR_PROVIDER_IDS.indexOf(b.provider_id)
+        );
+        
+        setProviders([...popularProviders, ...otherProviders]);
       } catch (error) {
-        console.error('Failed to fetch genres:', error);
+        console.error('Failed to fetch filter data:', error);
       }
     };
-    fetchGenres();
+    fetchFiltersData();
   }, [mediaType]);
 
   // Fetch results
@@ -78,6 +100,7 @@ export const BrowsePage = () => {
           year: selectedYear !== 'all' ? parseInt(selectedYear) : undefined,
           vote_average_gte: ratingRange[0] > 0 ? ratingRange[0] : undefined,
           vote_average_lte: ratingRange[1] < 10 ? ratingRange[1] : undefined,
+          with_watch_providers: selectedProvider !== 'all' ? selectedProvider : undefined,
         };
         data = await discover(mediaType, filters, pageNum);
       }
@@ -94,7 +117,7 @@ export const BrowsePage = () => {
     } finally {
       setLoading(false);
     }
-  }, [query, mediaType, sortBy, selectedGenre, selectedYear, ratingRange]);
+  }, [query, mediaType, sortBy, selectedGenre, selectedYear, selectedProvider, ratingRange]);
 
   // Initial fetch and when filters change
   useEffect(() => {
@@ -126,12 +149,13 @@ export const BrowsePage = () => {
     setSortBy('popularity.desc');
     setSelectedGenre('all');
     setSelectedYear('all');
+    setSelectedProvider('all');
     setRatingRange([0, 10]);
     setLocalQuery('');
     setSearchParams({ type: mediaType });
   };
 
-  const hasActiveFilters = sortBy !== 'popularity.desc' || selectedGenre !== 'all' || selectedYear !== 'all' || ratingRange[0] > 0 || ratingRange[1] < 10;
+  const hasActiveFilters = sortBy !== 'popularity.desc' || selectedGenre !== 'all' || selectedYear !== 'all' || selectedProvider !== 'all' || ratingRange[0] > 0 || ratingRange[1] < 10;
 
   const FilterPanel = () => (
     <div className="space-y-6">
@@ -145,6 +169,36 @@ export const BrowsePage = () => {
           <SelectContent className="bg-card border-white/10">
             {SORT_OPTIONS.map(opt => (
               <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Streaming Provider */}
+      <div>
+        <label className="text-sm font-medium text-slate-300 mb-2 block flex items-center gap-2">
+          <Tv2 className="w-4 h-4 text-primary" />
+          Streaming On
+        </label>
+        <Select value={selectedProvider} onValueChange={setSelectedProvider}>
+          <SelectTrigger className="bg-secondary/50 border-white/10" data-testid="provider-select">
+            <SelectValue placeholder="All Providers" />
+          </SelectTrigger>
+          <SelectContent className="bg-card border-white/10 max-h-72">
+            <SelectItem value="all">All Providers</SelectItem>
+            {providers.slice(0, 30).map(provider => (
+              <SelectItem key={provider.provider_id} value={provider.provider_id.toString()}>
+                <div className="flex items-center gap-2">
+                  {provider.logo_path && (
+                    <img 
+                      src={provider.logo_path} 
+                      alt="" 
+                      className="w-5 h-5 rounded"
+                    />
+                  )}
+                  {provider.provider_name}
+                </div>
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -300,6 +354,30 @@ export const BrowsePage = () => {
                 </SheetContent>
               </Sheet>
             </div>
+
+            {/* Active Provider Filter Badge */}
+            {selectedProvider !== 'all' && (
+              <div className="mb-4 flex items-center gap-2">
+                <span className="text-sm text-slate-400">Streaming on:</span>
+                {(() => {
+                  const provider = providers.find(p => p.provider_id.toString() === selectedProvider);
+                  return provider ? (
+                    <div className="flex items-center gap-2 bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">
+                      {provider.logo_path && (
+                        <img src={provider.logo_path} alt="" className="w-5 h-5 rounded" />
+                      )}
+                      {provider.provider_name}
+                      <button 
+                        onClick={() => setSelectedProvider('all')}
+                        className="ml-1 hover:text-white"
+                      >
+                        <X className="w-3 h-3" />
+                      </button>
+                    </div>
+                  ) : null;
+                })()}
+              </div>
+            )}
 
             {/* Results Grid */}
             {loading && results.length === 0 ? (
