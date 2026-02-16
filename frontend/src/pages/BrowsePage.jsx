@@ -74,8 +74,8 @@ export const BrowsePage = () => {
         // Discover mode with filters
         const filters = {
           sort_by: sortBy,
-          with_genres: selectedGenre || undefined,
-          year: selectedYear ? parseInt(selectedYear) : undefined,
+          with_genres: selectedGenre !== 'all' ? selectedGenre : undefined,
+          year: selectedYear !== 'all' ? parseInt(selectedYear) : undefined,
           vote_average_gte: ratingRange[0] > 0 ? ratingRange[0] : undefined,
           vote_average_lte: ratingRange[1] < 10 ? ratingRange[1] : undefined,
         };
