@@ -41,8 +41,8 @@ export const BrowsePage = () => {
   const mediaType = searchParams.get('type') || 'movie';
   const [localQuery, setLocalQuery] = useState(query);
   const [sortBy, setSortBy] = useState('popularity.desc');
-  const [selectedGenre, setSelectedGenre] = useState('');
-  const [selectedYear, setSelectedYear] = useState('');
+  const [selectedGenre, setSelectedGenre] = useState('all');
+  const [selectedYear, setSelectedYear] = useState('all');
   const [ratingRange, setRatingRange] = useState([0, 10]);
 
   // Fetch genres
