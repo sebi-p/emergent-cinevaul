@@ -124,8 +124,8 @@ export const BrowsePage = () => {
   // Clear all filters
   const clearFilters = () => {
     setSortBy('popularity.desc');
-    setSelectedGenre('');
-    setSelectedYear('');
+    setSelectedGenre('all');
+    setSelectedYear('all');
     setRatingRange([0, 10]);
     setLocalQuery('');
     setSearchParams({ type: mediaType });
