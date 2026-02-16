@@ -148,7 +148,7 @@ export const BrowsePage = () => {
     } finally {
       setLoading(false);
     }
-  }, [query, mediaType, sortBy, selectedGenre, selectedYear, selectedProvider, ratingRange]);
+  }, [query, mediaType, sortBy, selectedGenre, selectedYear, selectedProvider, selectedLanguage, ratingRange]);
 
   // Initial fetch and when filters change
   useEffect(() => {
