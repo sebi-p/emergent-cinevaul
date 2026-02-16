@@ -30,6 +30,35 @@ const YEAR_OPTIONS = Array.from({ length: 30 }, (_, i) => {
 // Popular streaming providers to show at top
 const POPULAR_PROVIDER_IDS = [8, 337, 9, 350, 15, 386, 387, 531, 1899, 283]; // Netflix, Disney+, Prime, Apple TV, Hulu, Peacock, Max, Paramount+, etc.
 
+// Common languages for filtering
+const LANGUAGE_OPTIONS = [
+  { value: 'en', label: 'English' },
+  { value: 'es', label: 'Spanish' },
+  { value: 'fr', label: 'French' },
+  { value: 'de', label: 'German' },
+  { value: 'it', label: 'Italian' },
+  { value: 'pt', label: 'Portuguese' },
+  { value: 'ja', label: 'Japanese' },
+  { value: 'ko', label: 'Korean' },
+  { value: 'zh', label: 'Chinese' },
+  { value: 'hi', label: 'Hindi' },
+  { value: 'ru', label: 'Russian' },
+  { value: 'ar', label: 'Arabic' },
+  { value: 'th', label: 'Thai' },
+  { value: 'tr', label: 'Turkish' },
+  { value: 'pl', label: 'Polish' },
+  { value: 'nl', label: 'Dutch' },
+  { value: 'sv', label: 'Swedish' },
+  { value: 'da', label: 'Danish' },
+  { value: 'no', label: 'Norwegian' },
+  { value: 'fi', label: 'Finnish' },
+  { value: 'id', label: 'Indonesian' },
+  { value: 'tl', label: 'Tagalog' },
+  { value: 'vi', label: 'Vietnamese' },
+  { value: 'he', label: 'Hebrew' },
+  { value: 'el', label: 'Greek' },
+];
+
 export const BrowsePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [results, setResults] = useState([]);
