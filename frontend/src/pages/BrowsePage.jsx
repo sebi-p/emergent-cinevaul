@@ -118,7 +118,7 @@ export const BrowsePage = () => {
     const params = new URLSearchParams(searchParams);
     params.set('type', type);
     setSearchParams(params);
-    setSelectedGenre(''); // Reset genre when switching type
+    setSelectedGenre('all'); // Reset genre when switching type
   };
 
   // Clear all filters
