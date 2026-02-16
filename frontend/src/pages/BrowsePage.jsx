@@ -131,6 +131,7 @@ export const BrowsePage = () => {
           vote_average_gte: ratingRange[0] > 0 ? ratingRange[0] : undefined,
           vote_average_lte: ratingRange[1] < 10 ? ratingRange[1] : undefined,
           with_watch_providers: selectedProvider !== 'all' ? selectedProvider : undefined,
+          with_original_language: selectedLanguage !== 'all' ? selectedLanguage : undefined,
         };
         data = await discover(mediaType, filters, pageNum);
       }
