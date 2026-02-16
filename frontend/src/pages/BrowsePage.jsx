@@ -77,6 +77,7 @@ export const BrowsePage = () => {
   const [selectedGenre, setSelectedGenre] = useState('all');
   const [selectedYear, setSelectedYear] = useState('all');
   const [selectedProvider, setSelectedProvider] = useState('all');
+  const [selectedLanguage, setSelectedLanguage] = useState('all');
   const [ratingRange, setRatingRange] = useState([0, 10]);
 
   // Fetch genres and providers
