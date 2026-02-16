@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Search, Filter, X, Loader2, SlidersHorizontal, Tv2 } from 'lucide-react';
+import { Search, Filter, X, Loader2, SlidersHorizontal, Tv2, Languages } from 'lucide-react';
 import { searchMulti, discover, getGenres, getWatchProviders } from '../lib/api';
 import { MediaCard, MediaCardSkeleton } from '../components/MediaCard';
 import { Button } from '../components/ui/button';
