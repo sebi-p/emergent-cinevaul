@@ -181,12 +181,13 @@ export const BrowsePage = () => {
     setSelectedGenre('all');
     setSelectedYear('all');
     setSelectedProvider('all');
+    setSelectedLanguage('all');
     setRatingRange([0, 10]);
     setLocalQuery('');
     setSearchParams({ type: mediaType });
   };
 
-  const hasActiveFilters = sortBy !== 'popularity.desc' || selectedGenre !== 'all' || selectedYear !== 'all' || selectedProvider !== 'all' || ratingRange[0] > 0 || ratingRange[1] < 10;
+  const hasActiveFilters = sortBy !== 'popularity.desc' || selectedGenre !== 'all' || selectedYear !== 'all' || selectedProvider !== 'all' || selectedLanguage !== 'all' || ratingRange[0] > 0 || ratingRange[1] < 10;
 
   const FilterPanel = () => (
     <div className="space-y-6">
