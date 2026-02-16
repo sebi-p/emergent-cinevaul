@@ -16,8 +16,15 @@ export const MediaRow = ({ title, items, loading, className }) => {
     }
   };
 
+  const getTestId = () => {
+    if (typeof title === 'string') {
+      return `media-row-${title.toLowerCase().replace(/\s+/g, '-')}`;
+    }
+    return 'media-row';
+  };
+
   return (
-    <section className={cn("relative media-row", className)} data-testid={`media-row-${title?.toLowerCase().replace(/\s+/g, '-')}`}>
+    <section className={cn("relative media-row", className)} data-testid={getTestId()}>
       {/* Section Title */}
       {title && (
         <h2 className="text-2xl md:text-3xl font-semibold text-white mb-6 px-4 md:px-0">
