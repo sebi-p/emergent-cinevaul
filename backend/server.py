@@ -474,6 +474,7 @@ async def discover(
     vote_average_gte: Optional[float] = None,
     vote_average_lte: Optional[float] = None,
     with_watch_providers: Optional[str] = None,
+    with_original_language: Optional[str] = None,
     watch_region: str = "US"
 ):
     """Discover movies/TV with filters"""
@@ -484,7 +485,8 @@ async def discover(
         "vote_average.gte": vote_average_gte,
         "vote_average.lte": vote_average_lte,
         "with_watch_providers": with_watch_providers,
-        "watch_region": watch_region if with_watch_providers else None
+        "watch_region": watch_region if with_watch_providers else None,
+        "with_original_language": with_original_language
     }
     
     if media_type == "movie" and year:
